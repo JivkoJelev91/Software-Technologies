@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Car Sellers</title>
+    <link rel="shortcut icon" type="image/png" href="http://cdn.cultofmac.com/wp-content/uploads/2017/04/lexus-apple-car-780x454.jpg" />
+
+    <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'><!-- active -->
+    <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
+
+    <link rel="stylesheet" href="bootstrap/fontcss/font-awesome.min.css">
+    <!-- bootsrtap css -->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.css">
+    <!-- main css styles -->
+    <link type="text/css" rel="stylesheet" href="styles/styles.css">
+    <!-- jquery scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- main scripts -->
+    <script type="text/javascript" src="bootstrap/scripts/main.js"></script>
+    <script type="text/javascript" src="bootstrap/scripts/bootstrap.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+<header id="menu" class="menu">
+    <div class="navbar navbar-default navbar-fixed-top text-uppercase">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#" id="linkHome" class="menu-item" >Home</a></li>
+                    <li><a href="#" id="linkLogin" class="menu-item">Login</a></li>
+                    <li><a href="#" id="linkRegister" class="menu-item">Register</a></li>
+                    <li><a href="#" id="linkListAds" class="menu-item">View All Cars</a></li>
+                    <li><a href="#" id="linkCreateAd" class="menu-item">Post Car</a></li>
+                    <li><a href="#" id="linkMyAds" class="menu-item">My Cars</a></li>
+                    <li><a href="#" id="linkLogout" class="menu-item">Logout</a></li>
+                </ul>
+                <span id="loggedInUser" class="menu-item"></span>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <!--Info box-->
+    <section id="loadingBox" class="loadingBox alert alert-dismissible alert-info">Loading ...</section>
+
+    <section id="infoBox" class="infoBox alert alert-dismissible alert-success">Info</section>
+
+    <section id="errorBox" class="errorBox alert alert-dismissible alert-danger">Error</section>
+
+    <section id="viewHome" class="viewHome">
+        <h1 class="title">Welcome to Car sellers</h1>
+        <div class="body-text">
+            <h3>Customize your advert.</h3>
+            <h3>Sell your car in no time!</h3>
+        </div>
+    </section>
+
+    <!--Forms for login and register-->
+    <section id="viewLogin" class="viewLogin">
+        <h1 class="titleForm">Please login here</h1>
+        <form id="formLogin" class="form">
+            <div class="form-group">
+                <label class="control-label" for="username">Username</label>
+                <input type="text" placeholder="username" class="form-control input-username" name="username" id="username" tabindex="-1" required/>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="password">Password</label>
+                <input type="password" placeholder="password" class="form-control input-password" name="passwd" id="password" required />
+            </div>
+            <input type="submit" class="btn btn-default" id="buttonLoginUser" value="Login"/>
+        </form>
+    </section>
+
+    <section id="viewRegister" class="viewRegister">
+        <h1 class="titleForm">Please register here</h1>
+        <form id="formRegister" class="form">
+            <div class="form-group">
+                <label class="control-label" for="usernameReg">Username</label>
+                <div><input type="text" placeholder="username" class="form-control input-username" name="username" id="usernameReg" tabindex="-1" required/></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="passwordReg">Password</label>
+                <input type="password" placeholder="password" class="form-control input-password" name="passwd" id="passwordReg" required />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="confirm">Confirm Password</label>
+                <input type="password" placeholder="confirm password" class="form-control input-password" name="confirm" id="confirm" required />
+            </div>
+            <input type="submit" class="btn btn-default" id="buttonRegisterUser" value="Register" />
+        </form>
+    </section>
+
+    <!--View adverts-->
+    <section id="viewMyAds" class="viewMyAds">
+        <h1 class="titleForm">My Cars</h1>
+
+        <div id="myAds" class="ads pricing_table_wdg"></div>
+    </section>
+
+
+    <section id="viewAds" class="viewAds">
+        <h1 class="titleForm">Cars</h1>
+
+        <div id="ads" class="pricing_table_wdg"></div>
+    </section>
+
+    <section id="viewCreateAd" class="viewCreateAd">
+        <h1 class="titleForm">Post new car</h1>
+        <form id="formCreateAd" class="form">
+            <div>Make:</div>
+            <div><input type="text" name="make" required /></div>
+            <div>Model:</div>
+            <div><input type="text" name="model" required></div>
+            <div>Km up to:</div>
+            <div><input type="text" name="km" required></div>
+            <div>Fuel Type:</div>
+            <div><input type="text" name="fuelType" required></div>
+            <div>Date Published:</div>
+            <div><input type="date" name="datePublished" required /></div>
+            <div>Price:</div>
+            <div><input type="number" step="1" name="price" required /></div>
+            <div>Image URL:</div>
+            <div><input type="text" name="image" required /></div>
+            <div><input type="submit" id="buttonCreateAd" value="Create" /></div>
+        </form>
+    </section>
+
+    <section id="viewDetailsAd"></section>
+
+    <section id="viewEditAd" class="viewEditAd">
+        <h1 class="titleForm">Edit existing advert</h1>
+        <form id="formEditAd" class="form">
+            <div><input type="hidden" name="id" /></div>
+            <div><input type="hidden" name="publisher" /></div>
+            <div>Make:</div>
+            <div><input type="text" name="make" required /></div>
+            <div>Model:</div>
+            <div><input type="text" name="model" required></div>
+            <div>Km up to:</div>
+            <div><input type="text" name="km"  required></div>
+            <div>Fuel Type:</div>
+            <div><input type="text" name="fuelType" required></div>
+            <div>Date Published:</div>
+            <div><input type="date" name="datePublished" required /></div>
+            <div>Price:</div>
+            <div><input type="number" step="1" name="price" required /></div>
+            <div>Image URL:</div>
+            <div><input type="text" name="image" required /></div>
+            <div><input type="submit" id="buttonEditAd" value="Edit" /></div>
+        </form>
+    </section>
+
+    <script>
+        startApp();
+    </script>
+</main>
+<footer class="footer">
+
+    <div class="container">
+        <p class="textFooter">Made by Petar Velichkov & Jivko Jelev  2017.All Rights Reserved</p>
+
+    </div>
+</footer>
+
+
+</body>
+</html>
